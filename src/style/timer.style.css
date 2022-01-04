@@ -1,0 +1,21 @@
+body {
+  text-align: center;
+}
+button.btn {
+  padding: 13px 45px;
+  margin: 0 12px;
+}
+span {
+  margin: 20px;
+  padding: 30px;
+  font-size: 40px;
+  top: 10px;
+  position: relative;
+}
+
+.container {
+  position: relative;
+}
+.main-func {
+  margin-top: 15px;
+}
