@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import "./style/timer.style.css";
-import InCreamentCount from "./components/incrementCount";
+import ButtonForOparation from "./components/buttonForOparation";
 class App extends Component {
   state = {
     count: 0,
@@ -17,13 +17,17 @@ class App extends Component {
 
   startTimer = () => {
     this.intervalId = setInterval(() => {
-      this.setState({ count: this.state.count - 1 }, () => {
-        if (this.state.count === 0) {
-          alert("Time is Finished");
-          clearInterval(this.intervalId);
-          this.intervalId = null;
-        }
-      });
+      if (this.state.count > 0) {
+        this.setState({ count: this.state.count - 1 }, () => {
+          if (this.state.count === 0) {
+            alert("Time is Finished");
+            clearInterval(this.intervalId);
+            this.intervalId = null;
+          }
+        });
+      } else {
+        this.setState({ count: this.state.count });
+      }
     }, 1000);
   };
 
@@ -47,21 +51,28 @@ class App extends Component {
       <div>
         <h1>This is Timer</h1>
         <div className="container">
-          <button onClick={this.decrementCount} className="btn">
-            -
-          </button>
+          <ButtonForOparation
+            oparationFunc={this.decrementCount}
+            nameOfButton="-"
+          />
           <span>{this.state.count}</span>
-          <InCreamentCount incrementfunc={this.incrementCount} />
+          <ButtonForOparation
+            oparationFunc={this.incrementCount}
+            nameOfButton="+"
+          />
           <div className="main-func">
-            <button onClick={this.startTimer} className="btn Start">
-              Start
-            </button>
-            <button onClick={this.stopTimer} className="btn Stop">
-              Stop
-            </button>
-            <button onClick={this.resetTimer} className="btn Reset">
-              Reset
-            </button>
+            <ButtonForOparation
+              oparationFunc={this.startTimer}
+              nameOfButton="Start"
+            />
+            <ButtonForOparation
+              oparationFunc={this.stopTimer}
+              nameOfButton="Stop"
+            />
+            <ButtonForOparation
+              oparationFunc={this.resetTimer}
+              nameOfButton="reset"
+            />
           </div>
         </div>
       </div>
