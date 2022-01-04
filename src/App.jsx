@@ -1,16 +1,14 @@
 import React, { Component } from "react";
 import "./style/timer.style.css";
-
+import InCreamentCount from "./components/incrementCount";
 class App extends Component {
   state = {
     count: 0,
   };
   intervalId = null;
-
   incrementCount = () => {
     this.setState({ count: this.state.count + 1 });
   };
-
   decrementCount = () => {
     if (this.state.count > 0) {
       this.setState({ count: this.state.count - 1 });
@@ -53,9 +51,7 @@ class App extends Component {
             -
           </button>
           <span>{this.state.count}</span>
-          <button onClick={this.incrementCount} className="btn">
-            +
-          </button>
+          <InCreamentCount incrementfunc={this.incrementCount} />
           <div className="main-func">
             <button onClick={this.startTimer} className="btn Start">
               Start
